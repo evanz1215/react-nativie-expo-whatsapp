@@ -39,7 +39,8 @@ const Page = () => {
       </Text>
 
       {/* asChild會把Link to /otp的行為傳給TouchableOpacity */}
-      <Link href="/otp" asChild>
+      {/* replace: 無法返回上一頁 (當 replace 屬性設置為 true 時，導航到新路徑時會替換當前的歷史記錄，而不是在歷史記錄中添加一個新的條目。)*/}
+      <Link href="/otp" replace asChild>
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Agree & Continue</Text>
         </TouchableOpacity>
