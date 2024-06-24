@@ -11,7 +11,27 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
+import MaskInput from "react-native-mask-input";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+const GER_PHONE = [
+  `+`,
+  /\d/,
+  /\d/,
+  " ",
+  /\d/,
+  /\d/,
+  /\d/,
+  " ",
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/,
+];
 
 const Page = () => {
   const [loading, setLoading] = useState();
@@ -42,6 +62,18 @@ const Page = () => {
           </View>
 
           <View style={styles.separator}></View>
+
+          <MaskInput
+            style={styles.input}
+            keyboardType="numeric"
+            value={phoneNumber}
+            autoFocus={true}
+            placeholder="+49 123 4567890"
+            onChangeText={(masked, unmasked) => {
+              setPhoneNumber(masked);
+            }}
+            mask={GER_PHONE}
+          />
         </View>
 
         <Text style={styles.legal}>
