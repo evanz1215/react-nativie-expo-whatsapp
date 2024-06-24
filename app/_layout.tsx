@@ -49,6 +49,14 @@ function RootLayoutNav() {
           headerTitleAlign: "center",
         }}
       />
+      <Stack.Screen
+        name="verify/[phone]"
+        options={{
+          headerTitle: "Verify Your Phone Number",
+          headerBackTitle: "Edit number",
+          headerTitleAlign: "center",
+        }}
+      />
     </Stack>
   );
 }

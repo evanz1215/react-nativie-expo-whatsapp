@@ -10,6 +10,7 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import MaskInput from "react-native-mask-input";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -34,7 +35,7 @@ const GER_PHONE = [
 ];
 
 const Page = () => {
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const router = useRouter();
   const keyboardVerticalOffset = Platform.OS === "ios" ? 90 : 0;
@@ -44,13 +45,25 @@ const Page = () => {
     Linking.openURL("https://google.com");
   };
 
-  const sendOTP = async () => {};
+  const sendOTP = async () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      router.push(`/verify/${phoneNumber}`);
+    }, 2000);
+  };
 
   const trySignIn = async () => {};
 
   return (
     <KeyboardAvoidingView style={{ flex: 1 }}>
       <View style={styles.container}>
+        {loading && (
+          <View style={[StyleSheet.absoluteFill, styles.loading]}>
+            <ActivityIndicator size="large" color={Colors.primary} />
+            <Text style={{ fontSize: 18, padding: 10 }}>Sending code...</Text>
+          </View>
+        )}
         <Text style={styles.description}>
           WhatsApp will need to verify your account. Carrier charges may apply.
         </Text>
