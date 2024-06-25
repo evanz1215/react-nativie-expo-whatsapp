@@ -54,6 +54,7 @@ function RootLayoutNav() {
         options={{
           headerTitle: "Verify Your Phone Number",
           headerBackTitle: "Edit number",
+          headerShown: true,
           headerTitleAlign: "center",
         }}
       />
